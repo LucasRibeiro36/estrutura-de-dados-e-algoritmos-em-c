@@ -12,11 +12,10 @@ typedef struct {
 
 void empilha(char valor,Pilha *pilha);
 void desempilha(Pilha *pilha);
-int seCheia(Pilha *pilha);
-int seVazia(Pilha *pilha);
+int isCheia(Pilha *pilha);
+int isVazia(Pilha *pilha);
 void imprimepilha(Pilha *pilha);
 void criaPilha(Pilha *pilha);
-void invertePalavra(char palavra[]);
 
 int main(){
     Pilha txt, txt_inv;
@@ -31,16 +30,14 @@ int main(){
         empilha(frase[i], &txt);
     }
     imprimepilha(&txt);
-    while (!seVazia(&txt)) {
+    
+    while (!isVazia(&txt)) {
         desempilha(&txt);
-        empilha(txt.letra[txt.topo], &txt_inv);
+        empilha(txt.letra[txt.topo-1], &txt_inv);
     }
     imprimepilha(&txt_inv);
     
 }
-
-
-
 
 
 
@@ -51,7 +48,7 @@ void criaPilha(Pilha *pilha){
 
 
 
-int seCheia(Pilha *pilha){
+int isCheia(Pilha *pilha){
     if (pilha->topo == TAM_MAX){
         return 0;
     } else {
@@ -59,7 +56,7 @@ int seCheia(Pilha *pilha){
     }
 }
 
-int seVazia(Pilha *pilha){
+int isVazia(Pilha *pilha){
     if (pilha->topo == 0){
         return 1;
     } else {
@@ -70,7 +67,7 @@ int seVazia(Pilha *pilha){
 
 
 void empilha(char valor,Pilha *pilha){
-    if (seCheia(pilha)){
+    if (isCheia(pilha)){
         pilha->letra[pilha->topo] = valor;
         pilha->topo++;
     } else {
@@ -79,7 +76,7 @@ void empilha(char valor,Pilha *pilha){
 }
 
 void desempilha(Pilha *pilha){
-    if (seVazia(pilha)){
+    if (isVazia(pilha)){
         printf("Pilha vazia !!!");
     } else {
         pilha->topo--;
