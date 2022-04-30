@@ -11,7 +11,7 @@ typedef struct {
 
 void empilha(int valor,Pilha *pilha);
 void desempilha(Pilha *pilha);
-int seCheia(Pilha *pilha);
-int seVazia(Pilha *pilha);
+int isCheia(Pilha *pilha);
+int isVazia(Pilha *pilha);
 void imprimepilha(Pilha *pilha);
 #endif

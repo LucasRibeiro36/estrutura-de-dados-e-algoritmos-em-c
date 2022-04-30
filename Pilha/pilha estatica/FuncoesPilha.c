@@ -2,7 +2,7 @@
 
 
 
-int seCheia(Pilha *pilha){
+int isCheia(Pilha *pilha){
     if (pilha->topo == TAMANHO_MAX){
         return 0;
     } else {
@@ -10,7 +10,7 @@ int seCheia(Pilha *pilha){
     }
 }
 
-int seVazia(Pilha *pilha){
+int isVazia(Pilha *pilha){
     if (pilha->topo == 0){
         return 0;
     } else {
@@ -21,7 +21,7 @@ int seVazia(Pilha *pilha){
 
 
 void empilha(int valor,Pilha *pilha){
-    if (seCheia(pilha)){
+    if (isCheia(pilha)){
         pilha->vetor[pilha->topo] = valor;
         pilha->topo++;
     } else {
@@ -30,7 +30,7 @@ void empilha(int valor,Pilha *pilha){
 }
 
 void desempilha(Pilha *pilha){
-    if (seVazia(pilha)){
+    if (isVazia(pilha)){
         printf("Elemento %d = %ls\n", pilha->topo, pilha->vetor);
         pilha->topo--;
     } else {
