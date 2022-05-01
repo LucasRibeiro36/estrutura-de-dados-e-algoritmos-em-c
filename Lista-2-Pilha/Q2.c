@@ -18,10 +18,12 @@ void imprimepilha(Pilha *pilha);
 void criaPilha(Pilha *pilha);
 
 int main(){
-    Pilha txt, txt_inv;
-    char *palavra = (char*) malloc(sizeof(char));
+    Pilha txt, txt_inv, txt_inv_2, palavra;
+    char e;
     criaPilha(&txt);
     criaPilha(&txt_inv);
+    criaPilha(&txt_inv_2);
+    criaPilha(&palavra);
     char frase[30];
     strcpy(frase, "Este exercicio eh muito facil");
 
@@ -32,10 +34,23 @@ int main(){
     imprimepilha(&txt);
     
     while (!isVazia(&txt)) {
-        desempilha(&txt);
         empilha(txt.letra[txt.topo-1], &txt_inv);
+        desempilha(&txt);
     }
     imprimepilha(&txt_inv);
+    while (!isVazia(&txt_inv)) {
+        e = txt_inv.letra[txt_inv.topo];
+        if (e == ' ') {
+            while (!isVazia(&palavra)){
+                empilha(palavra.letra[palavra.topo], &txt_inv_2);
+                desempilha(&palavra);
+                desempilha(&txt_inv);
+            }
+        }
+    }
+    imprimepilha(&txt_inv_2);
+
+    
     
 }
 
