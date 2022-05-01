@@ -19,13 +19,12 @@ void criaPilha(Pilha *pilha);
 
 int main(){
     Pilha txt, txt_inv, txt_inv_2, palavra;
-    char e;
+    char e, frase[31];
     criaPilha(&txt);
     criaPilha(&txt_inv);
     criaPilha(&txt_inv_2);
     criaPilha(&palavra);
-    char frase[30];
-    strcpy(frase, "Este exercicio eh muito facil");
+    strcpy(frase, "Este exercicio eh muito facil.");
 
     if (strlen(frase) == 0) return 1;
     for (int i = 0; i < strlen(frase); i++) {
@@ -39,13 +38,16 @@ int main(){
     }
     imprimepilha(&txt_inv);
     while (!isVazia(&txt_inv)) {
-        e = txt_inv.letra[txt_inv.topo];
-        if (e == ' ') {
+        e = txt_inv.letra[txt_inv.topo-1];
+        desempilha(&txt_inv);
+        if (e == ' ' || e == '.') {
             while (!isVazia(&palavra)){
-                empilha(palavra.letra[palavra.topo], &txt_inv_2);
+                empilha(palavra.letra[palavra.topo-1], &txt_inv_2);
                 desempilha(&palavra);
-                desempilha(&txt_inv);
             }
+            empilha(e, &txt_inv_2);
+        } else {
+            empilha(e, &palavra);
         }
     }
     imprimepilha(&txt_inv_2);
